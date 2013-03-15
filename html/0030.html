@@ -1,0 +1,149 @@
+<!Doctype html><html xmlns=http://www.w3.org/1999/xhtml><head><meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<h1 id="归并排序mergesort">0031 归并排序MergeSort</h1>
+<h2 id="题目请写出归并排序">题目：请写出归并排序</h2>
+<h2 id="参考答案">参考答案</h2>
+<p>```Java package com.javamm.al.sort;</p>
+<p>/** * * 算法复杂度O(nlogn),冒泡，插入，选择都需要O(n2),若n为10000,n平方100000000，nlogn为40000,若归并需要40s, * 则插入排序需要28h 缺点：需要在存储器有另一个大小等于被排序的数据项目的数组,即要足够的空间 思想：归并两个有序的数组 * 注意：类名请写成MergeSort */ public class MergeSort {</p>
+<pre><code>public static void recSort(int[] data, int left, int right) {
+
+    System.out.println(&quot;recSort,left:&quot; + left + &quot; right:&quot; + right);
+
+    if (left == right) {
+
+        return;
+    }
+
+    int center = (left + right) / 2;
+
+    // 递归左边
+    recSort(data, left, center);
+
+    // 递归右边
+    recSort(data, center + 1, right);
+
+    // merge
+    merge(data, left, center, right);
+
+}
+
+public static void merge(int[] data, int left, int center, int right) {
+
+    System.out.println(&quot;merge,left:&quot; + left + &quot; center: &quot; + center
+            + &quot; right: &quot; + right);
+
+    int[] tmpData = new int[data.length];
+    int mid = center + 1;
+    int third = left;
+    int tmp = left;
+    while (left &lt;= center &amp;&amp; mid &lt;= right) {
+        if (data[left] &lt;= data[mid]) {
+            tmpData[third++] = data[left++];
+        } else {
+            tmpData[third++] = data[mid++];
+        }
+    }
+
+    while (mid &lt;= right) {
+        tmpData[third++] = data[mid++];
+    }
+
+    while (left &lt;= center) {
+        tmpData[third++] = data[left++];
+    }
+
+    // 将tmpData中的内容复制回原数组
+    while (tmp &lt;= right) {
+        data[tmp] = tmpData[tmp++];
+    }
+}
+
+public static void main(String[] args) {
+
+    int[] data = { 3, 2, 1, 6, 0, 8 };
+
+    recSort(data, 0, data.length - 1);
+
+    for (int i = 0; i &lt; data.length; i++) {
+        System.out.print(data[i] + &quot; ,&quot;);
+    }
+}</code></pre>
+<p>} <code># 0032 QuickSort ## 请写出快速排序 ## 参考答案</code>Java /<em>*</em> 思想： * 1. 一躺排序将要排序的数据分成独立的两部分,一部分比另一部分所有数据都小,可用两指针,leftP,rightP，分别指向首尾 * 2. 再按此方法对这两部分数据进行排序,可用递归 * * 算法复杂度： * * 最坏情况算法复杂度：O(n2)，最好O(nlogn) */ public class QuickSort {</p>
+<pre><code>private static int[] a;
+
+public static void main(String[] args) {
+    a = new int[] { 5, 3, 2, 1, 8, 4 };
+    recQuickSort(0, a.length - 1);
+    display();
+}
+
+public static void recQuickSort(int left, int right) {
+    // Step 1 ：把数组划分成左边和右边，左边比选定的值小，右边比选定的值大
+    // Step 2 : 递归调用左边
+    // Step 3 : 递归调用右边
+    if (left &gt;= right) {
+        return;
+    }
+
+    int pivot = a[right];
+    int partition = partitionIt(left, right, pivot);
+    recQuickSort(left, partition - 1);
+    recQuickSort(partition + 1, right);
+}
+
+public static int partitionIt(int left, int right, int pivot) {
+    display();
+
+    // 左指针
+    int leftP = left - 1;
+
+    // 右指针
+    int rightP = right;
+
+    while (true) {
+
+        // 左边的值都比pivot小时
+        while (a[++leftP] &lt; pivot)
+            ;
+
+        // 右边的值都比pivot大时
+        while (rightP &gt; 0 &amp;&amp; a[--rightP] &gt; pivot)
+            ;
+
+        if (leftP &gt;= rightP) {
+            break;
+        } else {
+            // 交换
+            swap(left, right);
+        }
+    }
+    swap(leftP, right);
+    return leftP;
+}
+
+public static void swap(int left, int right) {
+    int temp = a[left];
+    a[left] = a[right];
+    a[right] = temp;
+}
+
+public static void display() {
+    for (int i = 0; i &lt; a.length; i++) {
+        System.out.print(a[i] + &quot; &quot;);
+    }
+    System.out.println(&quot;&quot;);
+}</code></pre>
+<p>}</p>
+<p>```</p>
+<h1 id="heapsort">0033 HeapSort</h1>
+<h3 id="参考答案-1">参考答案</h3>
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="co">/**</span>
+*
+*<span class="co"> 若一个数组节点的索引为x</span>
+*<span class="co"> </span>
+*<span class="co"> 其父节点的下标为</span>(<span class="co">x</span><span class="dv">-1</span>)/<span class="dv">2</span>
+*<span class="co"> </span>
+*<span class="co"> 左子节点下标为2</span>*<span class="co">x </span>+<span class="dv">1</span>
+*<span class="co"> </span>
+*<span class="co"> 右子节点下标为2</span>*<span class="co">x </span>+<span class="co"> </span><span class="dv">2</span>
+*
+<span class="co">*/</span></code></pre>

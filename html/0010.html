@@ -1,0 +1,75 @@
+<!Doctype html><html xmlns=http://www.w3.org/1999/xhtml><head><meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<h1 id="singleton-单例模式">0001 Singleton 单例模式</h1>
+<h2 id="题目设计一个类我们只能生成该类的一个实例">题目：设计一个类，我们只能生成该类的一个实例</h2>
+<h2 id="参考答案">参考答案</h2>
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Singleton {
+
+    <span class="kw">private</span> <span class="dt">static</span> Singleton singleton;
+
+    <span class="co">// 注意点: 私有化构造函数</span>
+    <span class="kw">private</span> <span class="fu">Singleton</span>() {
+    }
+
+    <span class="co">// synchronized 多线程环境 </span>
+    <span class="kw">public</span> <span class="kw">synchronized</span> <span class="dt">static</span> Singleton <span class="fu">getInsatnce</span>() {
+        <span class="kw">if</span>(singleton==<span class="kw">null</span>) {
+            singleton = <span class="kw">new</span> <span class="fu">Singleton</span>();
+
+        }       
+
+        <span class="kw">return</span> singleton;
+    }
+}</code></pre>
+<h1 id="替换空格">0002 替换空格</h1>
+<h2 id="题目请实现一个函数把字符数组中的每个空格替换成20如i-am-javamm输出为i20am20javamm">题目：请实现一个函数，把字符数组中的每个空格替换成&quot;%20&quot;。如&quot;I am javamm&quot;,输出为&quot;I%20am%20javamm&quot;</h2>
+<h2 id="参考答案-1">参考答案</h2>
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="co">/** 参考思路</span>
+
+<span class="co">  </span><span class="dv">1</span><span class="co">. 遍历一次字符串</span>，<span class="co">得到空格的总数</span>,<span class="co">以及数组的总长度</span>
+
+<span class="co">  </span><span class="dv">2</span>.<span class="co"> 创建一个新字符数组</span>，<span class="co">长度为原字符串长度 </span>+<span class="co"> 空格个数 </span>*<span class="co"> </span><span class="dv">2</span>
+
+<span class="co">  </span><span class="dv">3</span>.<span class="co"> 两个指针</span>，<span class="co">P1指向原字符数组末尾</span>，<span class="co">P2指向新字符数组的末尾 </span>
+
+<span class="co">  </span><span class="dv">4</span>.<span class="co"> 移动P1</span>,<span class="co">若非空格</span>，<span class="co">复制至新字符串数组</span>,<span class="co">若为空格</span>，<span class="co">P2插入</span>%<span class="dv">20</span>
+
+<span class="co">分析</span>
+
+<span class="co">  时间复制度为O</span>(<span class="co">n</span>)
+<span class="co">*/</span></code></pre>
+<h1 id="从尾到头打印链表">0003 从尾到头打印链表</h1>
+<h2 id="题目输入一个链表从尾到头打印出每个结点的值">题目：输入一个链表，从尾到头打印出每个结点的值</h2>
+<h2 id="参考答案-2">参考答案</h2>
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="co">/**</span>
+<span class="co">  遍历链表至栈中</span>,<span class="co">因为栈为</span>“<span class="co">后进先出</span>”
+<span class="co">*/</span></code></pre>
+<h1 id="重建二叉树">0004 重建二叉树</h1>
+<h2 id="题目输入一个二叉树的前序遍历和中序遍历的结果请重建出该二叉树假设不含有重复数字-如输入前序遍历-12473568-和中序遍历序列-47215386">题目：输入一个二叉树的前序遍历和中序遍历的结果，请重建出该二叉树(假设不含有重复数字) 。如输入前序遍历{ 1,2,4,7,3,5,6,8} 和中序遍历序列 {4,7,2,1,5,3,8,6}</h2>
+<h1 id="用两个栈实现队列">0005 用两个栈实现队列</h1>
+<h2 id="题目用两个栈实现一个队列">题目：用两个栈实现一个队列</h2>
+<h1 id="旋转数组的最小数字">0006 旋转数组的最小数字</h1>
+<h2 id="题目把一个数组的最开始的若干个元素搬到数组的末尾我们称之为数组的旋转输入一个递增排序的一个旋转输出旋转数组的最小元素例如34512-为12345的一个旋转最小元素为1">题目：把一个数组的最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的一个旋转，输出旋转数组的最小元素。例如：{3,4,5,1,2} 为{1,2,3,4,5}的一个旋转，最小元素为1</h2>
+<h2 id="参考答案-3">参考答案</h2>
+<pre class="sourceCode Java"><code class="sourceCode java">   <span class="co">// 二分查找 O(logn)</span></code></pre>
+<h1 id="斐波那契数列">0006 斐波那契数列</h1>
+<h2 id="题目写一个函数输入n求fibonacci数列的第n项">题目：写一个函数，输入n,求Fibonacci数列的第n项</h2>
+<h1 id="二进制中1的个数">0007 二进制中1的个数</h1>
+<h2 id="题目请实现一个函数输入一个整数输出该数二进制表示中1的个数如输入9二进制为1001输出结果为2">题目：请实现一个函数，输入一个整数，输出该数二进制表示中1的个数。如输入9,二进制为1001,输出结果为2</h2>
+<h2 id="参考答案-4">参考答案</h2>
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="co">/**</span>
+*<span class="co"> 把一个整数减1之后</span>，<span class="co">再与原来的整数做位与运算</span>，<span class="co">得到的结果相当于是把整数的二进制表示中的最右边一个1变成0</span>
+<span class="co">*/</span></code></pre>
+<h1 id="数值的整数次方">0008 数值的整数次方</h1>
+<h2 id="题目求数值的整数次方不需要考虑大数的问题">题目：求数值的整数次方，不需要考虑大数的问题。</h2>
+<h2 id="参考答案-5">参考答案</h2>
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="co">// 代码需要完备</span>
+<span class="co">// 当指数为负数，底数为0等</span></code></pre>
+<h1 id="打印1到最大的n位数">0009 打印1到最大的n位数</h1>
+<h2 id="题目输入一个数字n按顺序打印出从1到最大n位的十进制数如输入3则打印123...999">题目:输入一个数字n,按顺序打印出从1到最大n位的十进制数。如输入3，则打印1,2,3...999</h2>
+<h2 id="参考答案-6">参考答案</h2>
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="co">// 当n很大时，会溢出</span>
+<span class="co">// 可考虑用字符串表示数字</span></code></pre>
+<h1 id="在o1时间删除链表结点">0010 在O(1)时间删除链表结点</h1>
+<h2 id="题目给定单向链表的头指针和一个结点指针定义一个函数在o1时间删除结点">题目：给定单向链表的头指针和一个结点指针，定义一个函数在O(1)时间删除结点</h2>
+<h2 id="参考答案-7">参考答案</h2>
+<pre class="sourceCode Java"><code class="sourceCode java"><span class="co">// 思路：把需删除结点的下一个结点内容复制到需删除的结点上，再把下一个结点删除</span></code></pre>
